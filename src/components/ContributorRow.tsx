@@ -1,0 +1,34 @@
+import { ChevronRight } from "lucide-react";
+
+interface ContributorRowProps {
+  label: string;
+  value: string;
+  status: "good" | "bad";
+  barProgress: number;
+}
+
+const ContributorRow = ({ label, value, status, barProgress }: ContributorRowProps) => {
+  const isGood = status === "good";
+
+  return (
+    <div className="py-3">
+      <div className="flex items-center justify-between mb-2">
+        <span className="text-sm text-foreground">{label}</span>
+        <div className="flex items-center gap-1.5">
+          <span className={`text-sm ${isGood ? "text-primary" : "text-destructive"}`}>
+            {value}
+          </span>
+          <ChevronRight size={16} className="text-foreground/30" />
+        </div>
+      </div>
+      <div className="h-[3px] bg-foreground/10 rounded-full overflow-hidden">
+        <div
+          className={`h-full rounded-full transition-all duration-700 ${isGood ? "bg-primary" : "bg-destructive"}`}
+          style={{ width: `${barProgress}%` }}
+        />
+      </div>
+    </div>
+  );
+};
+
+export default ContributorRow;
