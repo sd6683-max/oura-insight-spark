@@ -52,15 +52,19 @@ const MetricCard = ({ icon, label, status, statusColor, score, unit, min, max, c
         </div>
 
         <div className="flex-1 ml-8 mb-2">
-          <div className="relative h-1 bg-foreground/10 rounded-full">
+          <div className="relative h-[5px] bg-foreground/15 rounded-full">
             <div
-              className="absolute top-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-foreground border-2 border-foreground shadow-lg"
+              className="absolute inset-y-0 left-0 rounded-full bg-primary/80"
+              style={{ width: `${progress}%` }}
+            />
+            <div
+              className="absolute top-1/2 w-3.5 h-3.5 rounded-full bg-foreground border-[2.5px] border-foreground shadow-lg"
               style={{ left: `${progress}%`, transform: `translateX(-50%) translateY(-50%)` }}
             />
           </div>
-          <div className="flex justify-between mt-1.5">
-            <span className="text-[11px] text-foreground/40">{min}</span>
-            <span className="text-[11px] text-foreground/40">{max}</span>
+          <div className="flex justify-between mt-2">
+            <span className="text-[11px] text-foreground/50">{min}</span>
+            <span className="text-[11px] text-foreground/50">{max}</span>
           </div>
         </div>
       </div>
