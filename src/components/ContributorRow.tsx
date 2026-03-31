@@ -3,12 +3,13 @@ import { ChevronRight } from "lucide-react";
 interface ContributorRowProps {
   label: string;
   value: string;
-  status: "good" | "bad";
+  status: "good" | "bad" | "neutral";
   barProgress: number;
 }
 
 const ContributorRow = ({ label, value, status, barProgress }: ContributorRowProps) => {
-  const isGood = status === "good";
+  const colorClass = status === "good" ? "text-primary" : status === "bad" ? "text-destructive" : "text-foreground/70";
+  const barColorClass = status === "good" ? "bg-primary" : status === "bad" ? "bg-destructive" : "bg-secondary";
 
   return (
     <div className="py-3.5">

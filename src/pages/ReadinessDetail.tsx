@@ -10,7 +10,7 @@ const ReadinessDetail = () => {
   const [expanded, setExpanded] = useState(false);
 
   const contributors = [
-    { label: "Resting heart rate", value: "68 bpm", status: "bad" as const, barProgress: 70 },
+    { label: "Resting heart rate", value: "68 bpm", status: "neutral" as const, barProgress: 70 },
     { label: "HRV balance", value: "Pay attention", status: "bad" as const, barProgress: 35 },
     { label: "Body temperature", value: "Optimal", status: "good" as const, barProgress: 85 },
     { label: "Recovery index", value: "Pay attention", status: "bad" as const, barProgress: 30 },
