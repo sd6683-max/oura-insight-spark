@@ -12,20 +12,38 @@ const BottomNav = ({ active = "vitals" }: BottomNavProps) => {
   ];
 
   return (
-    <div className="flex items-center justify-around py-2.5 px-4 mx-4 mb-4 rounded-full bg-nav-bg">
+    <div
+      className="flex items-center justify-around py-2 px-3 mx-4 mb-3 rounded-full"
+      style={{ backgroundColor: "#1c1c1e" }}
+    >
       {items.map((item) => (
         <button
           key={item.id}
-          className={`flex flex-col items-center gap-0.5 px-4 py-1 ${
-            active === item.id ? "text-foreground" : "text-muted-foreground"
-          }`}
+          className="flex flex-col items-center gap-0.5 px-5 py-1"
         >
-          <item.icon size={20} />
-          <span className="text-[10px]">{item.label}</span>
+          <item.icon
+            size={20}
+            strokeWidth={1.5}
+            style={{
+              color: active === item.id ? "#ffffff" : "#666666",
+            }}
+          />
+          <span
+            className="text-[10px]"
+            style={{
+              color: active === item.id ? "#ffffff" : "#666666",
+              fontWeight: active === item.id ? 500 : 400,
+            }}
+          >
+            {item.label}
+          </span>
         </button>
       ))}
-      <button className="w-10 h-10 rounded-full bg-foreground/10 flex items-center justify-center text-muted-foreground">
-        <Plus size={20} />
+      <button
+        className="w-9 h-9 rounded-full flex items-center justify-center"
+        style={{ backgroundColor: "rgba(255,255,255,0.08)" }}
+      >
+        <Plus size={18} strokeWidth={1.5} style={{ color: "#666666" }} />
       </button>
     </div>
   );
