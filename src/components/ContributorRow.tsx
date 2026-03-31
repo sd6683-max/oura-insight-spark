@@ -24,7 +24,7 @@ const ContributorRow = ({ label, value, status, barProgress }: ContributorRowPro
       </div>
       <div className="h-[4px] bg-foreground/10 rounded-full overflow-hidden">
         <div
-          className={`h-full rounded-full transition-all duration-700 ${isGood ? "bg-primary" : "bg-destructive"}`}
+          className={`h-full rounded-full transition-all duration-700 ${barColorClass}`}
           style={{ width: `${barProgress}%` }}
         />
       </div>
