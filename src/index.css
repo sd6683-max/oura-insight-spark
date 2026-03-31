@@ -9,7 +9,7 @@
     --background: 0 0% 0%;
     --foreground: 0 0% 100%;
 
-    --card: 160 40% 11%;
+    --card: 160 30% 12%;
     --card-foreground: 0 0% 100%;
 
     --popover: 0 0% 8%;
@@ -18,16 +18,16 @@
     --primary: 153 42% 49%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 40 68% 60%;
+    --secondary: 55 30% 55%;
     --secondary-foreground: 0 0% 100%;
 
     --muted: 0 0% 11%;
-    --muted-foreground: 240 2% 56%;
+    --muted-foreground: 0 0% 56%;
 
     --accent: 0 0% 15%;
     --accent-foreground: 0 0% 100%;
 
-    --destructive: 8 65% 63%;
+    --destructive: 15 55% 65%;
     --destructive-foreground: 0 0% 100%;
 
     --border: 0 0% 15%;
@@ -46,12 +46,10 @@
     --sidebar-ring: 153 42% 49%;
 
     --teal: 153 42% 49%;
-    --coral: 8 65% 63%;
-    --gold: 40 68% 70%;
+    --coral: 15 55% 65%;
+    --gold: 55 30% 55%;
     --surface: 0 0% 11%;
-    --text-secondary: 240 2% 56%;
-    --card-gradient-from: 160 45% 10%;
-    --card-gradient-to: 155 35% 14%;
+    --text-secondary: 0 0% 56%;
     --nav-bg: 0 0% 12%;
   }
 }

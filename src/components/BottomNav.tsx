@@ -17,14 +17,14 @@ const BottomNav = ({ active = "vitals" }: BottomNavProps) => {
         <button
           key={item.id}
           className={`flex flex-col items-center gap-0.5 px-4 py-1 ${
-            active === item.id ? "text-foreground" : "text-text-secondary"
+            active === item.id ? "text-foreground" : "text-muted-foreground"
           }`}
         >
           <item.icon size={20} />
           <span className="text-[10px]">{item.label}</span>
         </button>
       ))}
-      <button className="w-10 h-10 rounded-full bg-foreground/10 flex items-center justify-center text-foreground/60">
+      <button className="w-10 h-10 rounded-full bg-foreground/10 flex items-center justify-center text-muted-foreground">
         <Plus size={20} />
       </button>
     </div>
