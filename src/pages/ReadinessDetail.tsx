@@ -41,8 +41,8 @@ const ReadinessDetail = () => {
           </div>
 
           {/* Score */}
-          <div className="flex items-baseline gap-3 mb-6">
-            <span className="text-7xl font-light text-foreground tracking-tight">65</span>
+          <div className="flex items-baseline gap-3 mb-5">
+            <span className="text-[72px] font-extralight text-foreground tracking-tight leading-none">65</span>
             <span className="text-sm font-semibold tracking-wider uppercase text-destructive">
               PAY ATTENTION
             </span>
