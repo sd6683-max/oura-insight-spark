@@ -8,23 +8,29 @@ interface ContributorRowProps {
 }
 
 const ContributorRow = ({ label, value, status, barProgress }: ContributorRowProps) => {
-  const colorClass = status === "good" ? "text-primary" : status === "bad" ? "text-destructive" : "text-foreground/70";
-  const barColorClass = status === "good" ? "bg-primary" : status === "bad" ? "bg-destructive" : "bg-secondary";
+  // Bad items get peach/salmon text, others stay white
+  const labelColor = status === "bad" ? "text-destructive" : "text-foreground";
+  const valueColor = status === "bad" ? "text-destructive" : "text-foreground/80";
+  
+  // Bar colors: coral for bad, white/cream for neutral, teal for good
+  const barBg = status === "bad" 
+    ? "bg-destructive" 
+    : status === "good" 
+      ? "bg-primary" 
+      : "bg-foreground/80";
 
   return (
-    <div className="py-3.5">
-      <div className="flex items-center justify-between mb-2.5">
-        <span className="text-[15px] text-foreground">{label}</span>
+    <div className="py-4">
+      <div className="flex items-center justify-between mb-3">
+        <span className={`text-[15px] font-normal ${labelColor}`}>{label}</span>
         <div className="flex items-center gap-2">
-          <span className={`text-[15px] ${colorClass}`}>
-            {value}
-          </span>
+          <span className={`text-[15px] ${valueColor}`}>{value}</span>
           <ChevronRight size={16} className="text-foreground/30" />
         </div>
       </div>
-      <div className="h-[4px] bg-foreground/10 rounded-full overflow-hidden">
+      <div className="h-[5px] bg-foreground/15 rounded-full overflow-hidden">
         <div
-          className={`h-full rounded-full transition-all duration-700 ${barColorClass}`}
+          className={`h-full rounded-full ${barBg}`}
           style={{ width: `${barProgress}%` }}
         />
       </div>

@@ -10,10 +10,11 @@ interface MetricCardProps {
   min: number;
   max: number;
   current: number;
+  gradient?: string;
   onClick?: () => void;
 }
 
-const MetricCard = ({ icon, label, status, statusColor, score, unit, min, max, current, onClick }: MetricCardProps) => {
+const MetricCard = ({ icon, label, status, statusColor, score, unit, min, max, current, gradient, onClick }: MetricCardProps) => {
   const progress = ((current - min) / (max - min)) * 100;
   
   const statusClasses = {
@@ -22,49 +23,51 @@ const MetricCard = ({ icon, label, status, statusColor, score, unit, min, max, c
     gold: "text-secondary",
   };
 
+  const defaultGradient = "linear-gradient(160deg, hsl(160 35% 14%) 0%, hsl(158 30% 11%) 100%)";
+
   return (
     <button
       onClick={onClick}
-      className="w-full rounded-2xl p-5 text-left relative overflow-hidden"
+      className="w-full rounded-2xl p-5 pb-6 text-left relative overflow-hidden"
       style={{
-        background: "linear-gradient(135deg, #0d2b22 0%, #162f26 50%, #1a3328 100%)",
+        background: gradient || defaultGradient,
       }}
     >
-      <div className="flex items-start justify-between mb-6">
+      <div className="flex items-start justify-between mb-8">
         <div className="flex items-center gap-3">
-          <div className="w-9 h-9 rounded-full bg-foreground/10 flex items-center justify-center text-foreground/60">
+          <div className="w-10 h-10 rounded-full bg-foreground/10 flex items-center justify-center text-foreground/60">
             {icon}
           </div>
           <div>
-            <p className="text-sm font-medium text-foreground">{label}</p>
-            <p className={`text-xs font-semibold tracking-wider uppercase ${statusClasses[statusColor]}`}>
+            <p className="text-base font-normal text-foreground tracking-wide">{label}</p>
+            <p className={`text-xs font-semibold tracking-[0.15em] uppercase ${statusClasses[statusColor]}`}>
               {status}
             </p>
           </div>
         </div>
-        <ChevronRight size={20} className="text-foreground/40 mt-1" />
+        <ChevronRight size={22} className="text-foreground/40 mt-2" />
       </div>
 
       <div className="flex items-end justify-between">
         <div className="flex items-baseline gap-1">
-          <span className="text-5xl font-light text-foreground tracking-tight">{score}</span>
-          {unit && <span className="text-lg text-foreground/60 font-light">{unit}</span>}
+          <span className="text-6xl font-extralight text-foreground tracking-tight leading-none">{score}</span>
+          {unit && <span className="text-xl text-foreground/50 font-light ml-1">{unit}</span>}
         </div>
 
         <div className="flex-1 ml-8 mb-2">
-          <div className="relative h-[5px] bg-foreground/15 rounded-full">
+          <div className="relative h-[4px] bg-foreground/20 rounded-full">
             <div
-              className="absolute inset-y-0 left-0 rounded-full bg-primary/80"
+              className="absolute inset-y-0 left-0 rounded-full bg-foreground/70"
               style={{ width: `${progress}%` }}
             />
             <div
-              className="absolute top-1/2 w-3.5 h-3.5 rounded-full bg-foreground border-[2.5px] border-foreground shadow-lg"
+              className="absolute top-1/2 w-4 h-4 rounded-full bg-foreground border-[2px] border-primary"
               style={{ left: `${progress}%`, transform: `translateX(-50%) translateY(-50%)` }}
             />
           </div>
           <div className="flex justify-between mt-2">
-            <span className="text-[11px] text-foreground/50">{min}</span>
-            <span className="text-[11px] text-foreground/50">{max}</span>
+            <span className="text-[11px] text-foreground/40">{min}</span>
+            <span className="text-[11px] text-foreground/40">{max}</span>
           </div>
         </div>
       </div>
