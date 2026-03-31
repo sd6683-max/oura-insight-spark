@@ -16,7 +16,7 @@ const ContributorRow = ({ label, value, status, barProgress }: ContributorRowPro
       <div className="flex items-center justify-between mb-2.5">
         <span className="text-[15px] text-foreground">{label}</span>
         <div className="flex items-center gap-2">
-          <span className={`text-[15px] ${isGood ? "text-primary" : "text-destructive"}`}>
+          <span className={`text-[15px] ${colorClass}`}>
             {value}
           </span>
           <ChevronRight size={16} className="text-foreground/30" />
