@@ -7,23 +7,37 @@ const Index = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen bg-background flex justify-center">
+    <div className="min-h-screen flex justify-center" style={{ backgroundColor: "#000000" }}>
       <div className="w-full max-w-[390px] flex flex-col min-h-screen">
-        <div className="flex-1 overflow-y-auto px-4 pt-14 pb-4 space-y-3">
+        <div className="flex-1 overflow-y-auto px-3 pt-12 pb-3 space-y-2.5">
           {/* Header */}
-          <h1 className="text-lg font-normal text-foreground text-center tracking-wide">Vitals</h1>
+          <h1
+            className="text-center mb-1"
+            style={{ fontSize: 17, fontWeight: 400, color: "#ffffff", letterSpacing: "0.02em" }}
+          >
+            Vitals
+          </h1>
 
           {/* Date tabs */}
-          <div className="flex items-center justify-center gap-8 pb-2">
-            <span className="text-sm text-muted-foreground">Yesterday</span>
-            <span className="text-sm text-foreground font-medium border-b-2 border-foreground pb-1 flex items-center gap-1.5">
-              Today <Calendar size={14} />
+          <div className="flex items-center justify-center gap-7 pb-1">
+            <span style={{ fontSize: 13, color: "#666666" }}>Yesterday</span>
+            <span
+              className="flex items-center gap-1.5 pb-0.5"
+              style={{
+                fontSize: 13,
+                color: "#ffffff",
+                fontWeight: 500,
+                borderBottom: "2px solid #ffffff",
+                paddingBottom: 3,
+              }}
+            >
+              Today <Calendar size={13} strokeWidth={1.5} />
             </span>
           </div>
 
           {/* Metric cards */}
           <MetricCard
-            icon={<Zap size={18} />}
+            icon={<Zap size={15} strokeWidth={1.5} />}
             label="Readiness"
             status="PAY ATTENTION"
             statusColor="coral"
@@ -31,12 +45,11 @@ const Index = () => {
             min={48}
             max={78}
             current={65}
-            gradient="linear-gradient(160deg, hsl(160 35% 14%) 0%, hsl(158 30% 11%) 100%)"
             onClick={() => navigate("/readiness")}
           />
 
           <MetricCard
-            icon={<Moon size={18} />}
+            icon={<Moon size={15} strokeWidth={1.5} />}
             label="Sleep"
             status="GOOD"
             statusColor="teal"
@@ -44,11 +57,10 @@ const Index = () => {
             min={53}
             max={85}
             current={72}
-            gradient="linear-gradient(160deg, hsl(160 35% 14%) 0%, hsl(158 30% 11%) 100%)"
           />
 
           <MetricCard
-            icon={<Flame size={18} />}
+            icon={<Flame size={15} strokeWidth={1.5} />}
             label="Activity goal"
             status="MAKING PROGRESS"
             statusColor="gold"
@@ -57,7 +69,6 @@ const Index = () => {
             min={0}
             max={100}
             current={54}
-            gradient="linear-gradient(160deg, hsl(140 15% 14%) 0%, hsl(120 10% 10%) 100%)"
           />
         </div>
 

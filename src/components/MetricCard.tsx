@@ -10,64 +10,92 @@ interface MetricCardProps {
   min: number;
   max: number;
   current: number;
-  gradient?: string;
   onClick?: () => void;
 }
 
-const MetricCard = ({ icon, label, status, statusColor, score, unit, min, max, current, gradient, onClick }: MetricCardProps) => {
+const MetricCard = ({ icon, label, status, statusColor, score, unit, min, max, current, onClick }: MetricCardProps) => {
   const progress = ((current - min) / (max - min)) * 100;
-  
-  const statusClasses = {
-    teal: "text-primary",
-    coral: "text-destructive",
-    gold: "text-secondary",
+
+  const statusColors = {
+    teal: "#4caf8a",
+    coral: "#d4715e",
+    gold: "#a8a060",
   };
 
-  const defaultGradient = "linear-gradient(160deg, hsl(160 35% 14%) 0%, hsl(158 30% 11%) 100%)";
+  const dotColor = statusColors[statusColor];
 
   return (
     <button
       onClick={onClick}
-      className="w-full rounded-2xl p-5 pb-6 text-left relative overflow-hidden"
+      className="w-full rounded-[20px] px-5 pt-4 pb-5 text-left relative overflow-hidden"
       style={{
-        background: gradient || defaultGradient,
+        background: "linear-gradient(170deg, #142c23 0%, #0c1c16 100%)",
       }}
     >
-      <div className="flex items-start justify-between mb-8">
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-full bg-foreground/10 flex items-center justify-center text-foreground/60">
-            {icon}
+      {/* Top row: icon + label + chevron */}
+      <div className="flex items-center justify-between mb-6">
+        <div className="flex items-center gap-2.5">
+          <div
+            className="w-8 h-8 rounded-full flex items-center justify-center"
+            style={{ backgroundColor: "rgba(255,255,255,0.07)" }}
+          >
+            <span className="text-white/50" style={{ fontSize: 15 }}>{icon}</span>
           </div>
-          <div>
-            <p className="text-base font-normal text-foreground tracking-wide">{label}</p>
-            <p className={`text-xs font-semibold tracking-[0.15em] uppercase ${statusClasses[statusColor]}`}>
+          <div className="flex flex-col">
+            <span className="text-[15px] font-normal text-white/90 leading-tight tracking-wide">{label}</span>
+            <span
+              className="text-[10px] font-semibold tracking-[0.18em] uppercase leading-tight mt-0.5"
+              style={{ color: dotColor }}
+            >
               {status}
-            </p>
+            </span>
           </div>
         </div>
-        <ChevronRight size={22} className="text-foreground/40 mt-2" />
+        <ChevronRight size={18} className="text-white/25" />
       </div>
 
+      {/* Bottom row: score + progress bar */}
       <div className="flex items-end justify-between">
-        <div className="flex items-baseline gap-1">
-          <span className="text-6xl font-extralight text-foreground tracking-tight leading-none">{score}</span>
-          {unit && <span className="text-xl text-foreground/50 font-light ml-1">{unit}</span>}
+        <div className="flex items-baseline">
+          <span
+            className="leading-none text-white"
+            style={{ fontSize: 56, fontWeight: 200, letterSpacing: "-0.03em" }}
+          >
+            {score}
+          </span>
+          {unit && (
+            <span className="text-white/40 ml-0.5" style={{ fontSize: 20, fontWeight: 300 }}>
+              {unit}
+            </span>
+          )}
         </div>
 
-        <div className="flex-1 ml-8 mb-2">
-          <div className="relative h-[4px] bg-foreground/20 rounded-full">
+        <div className="flex-1 ml-6 mb-2.5" style={{ maxWidth: 160 }}>
+          <div className="relative h-[3px] rounded-full" style={{ backgroundColor: "rgba(255,255,255,0.12)" }}>
+            {/* Filled track */}
             <div
-              className="absolute inset-y-0 left-0 rounded-full bg-foreground/70"
-              style={{ width: `${progress}%` }}
+              className="absolute inset-y-0 left-0 rounded-full"
+              style={{
+                width: `${progress}%`,
+                backgroundColor: "rgba(255,255,255,0.25)",
+              }}
             />
+            {/* Indicator dot */}
             <div
-              className="absolute top-1/2 w-4 h-4 rounded-full bg-foreground border-[2px] border-primary"
-              style={{ left: `${progress}%`, transform: `translateX(-50%) translateY(-50%)` }}
+              className="absolute top-1/2 rounded-full"
+              style={{
+                left: `${progress}%`,
+                transform: "translateX(-50%) translateY(-50%)",
+                width: 12,
+                height: 12,
+                backgroundColor: "#fff",
+                border: `2.5px solid ${dotColor}`,
+              }}
             />
           </div>
-          <div className="flex justify-between mt-2">
-            <span className="text-[11px] text-foreground/40">{min}</span>
-            <span className="text-[11px] text-foreground/40">{max}</span>
+          <div className="flex justify-between mt-1.5">
+            <span className="text-[10px] text-white/30">{min}</span>
+            <span className="text-[10px] text-white/30">{max}</span>
           </div>
         </div>
       </div>
